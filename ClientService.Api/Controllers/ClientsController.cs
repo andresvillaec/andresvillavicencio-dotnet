@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AccountService.Api.Controllers
+namespace ClientService.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class AccountController : ControllerBase
+    public class ClientsController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Mild", "Balmy",
+            "Chilly", "Warm","Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<AccountController> _logger;
+        private readonly ILogger<ClientsController> _logger;
 
-        public AccountController(ILogger<AccountController> logger)
+        public ClientsController(ILogger<ClientsController> logger)
         {
             _logger = logger;
         }
