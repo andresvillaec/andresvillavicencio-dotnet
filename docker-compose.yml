@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.9'
 
 services:
   sqlserver:
@@ -11,6 +11,12 @@ services:
       - "1433:1433"
     networks:
       - microservices-network
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Your_password123 -Q \"SET NOCOUNT ON; SELECT TOP 1 1 FROM sys.databases\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   accountservice.api:
     build:
@@ -21,10 +27,18 @@ services:
       - "5000:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=AccountDb;User=sa;Password=Your_password123;
     depends_on:
-      - sqlserver
+      sqlserver:
+        condition: service_healthy
     networks:
       - microservices-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   clientservice.api:
     build:
@@ -35,10 +49,18 @@ services:
       - "5001:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ClientDb;User=sa;Password=Your_password123;
     depends_on:
-      - sqlserver
+      sqlserver:
+        condition: service_healthy
     networks:
       - microservices-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
 networks:
   microservices-network:
