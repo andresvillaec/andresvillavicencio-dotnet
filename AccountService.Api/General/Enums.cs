@@ -2,6 +2,6 @@
 
 public enum AccountTypes
 {
-    Deposit,
-    Withdrawal,
+    Deposit = 1,
+    Withdrawal = 2,
 }

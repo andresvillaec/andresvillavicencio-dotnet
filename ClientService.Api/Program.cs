@@ -1,4 +1,7 @@
+using AccountService.Api.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using System;
 // ... other using statements
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,12 +12,17 @@ builder.Services.AddControllers();
 // Add health check services
 builder.Services.AddHealthChecks();
 
-// Add DbContext
-//builder.Services.AddDbContext<AccountContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-// For ClientService.Api, use ClientContext and adjust accordingly
+builder.Services.AddHttpClient();
+builder.Services.AddDbContext<ClientServiceContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var dbContext = scope.ServiceProvider.GetRequiredService<ClientServiceContext>();
+//    dbContext.Database.Migrate();
+//}
 
 // Configure the HTTP request pipeline.
 app.MapControllers();

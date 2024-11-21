@@ -20,6 +20,10 @@ namespace AccountService.Api.Data
                 .WithOne(m => m.Account)
                 .HasForeignKey(m => m.AccountId);
 
+            modelBuilder.Entity<Account>()
+                .HasIndex(a => a.Number)
+                .IsUnique();
+
             // Add configurations if needed
         }
     }
