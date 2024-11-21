@@ -1,12 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ClientService.Api.Models
+namespace ClientService.Api.Models;
+
+public class Client : Person
 {
-    public class Client : Person
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    public string Password { get; set; }
+
+    [Required]
+    public bool Status { get; set; }
+
+    public Client()
     {
-        [Key]
-        public int Id { get; set; }
-        public string Password { get; set; }
-        public bool Status { get; set; }
+        Status = true;
     }
 }

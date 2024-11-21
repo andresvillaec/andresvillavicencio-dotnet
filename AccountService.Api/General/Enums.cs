@@ -1,11 +1,7 @@
-﻿namespace AccountService.Api.General
+﻿namespace AccountService.Api.General;
+
+public enum AccountTypes
 {
-    public class Enums
-    {
-        public enum AccountTypes
-        {
-            Deposit,
-            Withdrawal,
-        }
-    }
+    Deposit,
+    Withdrawal,
 }

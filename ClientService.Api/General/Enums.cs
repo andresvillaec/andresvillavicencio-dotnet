@@ -1,11 +1,7 @@
-﻿namespace ClientService.Api.General
+﻿namespace ClientService.Api.General;
+
+public enum Genders
 {
-    public class Enums
-    {
-        public enum Genders
-        {
-            Male,
-            Female,
-        }
-    }
+    Male,
+    Female,
 }
