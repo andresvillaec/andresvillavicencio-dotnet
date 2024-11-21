@@ -28,8 +28,7 @@ public class Movement
     // Foreign key
     public int AccountId { get; set; }
 
-    [Required]
-    public Account Account { get; set; }
+    public Account? Account { get; set; }
 
     public Movement()
     {

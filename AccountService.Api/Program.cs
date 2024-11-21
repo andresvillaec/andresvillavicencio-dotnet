@@ -15,6 +15,9 @@ builder.Services.AddDbContext<AccountServiceContext>(options =>
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountsService, AccountsService>();
 
+builder.Services.AddScoped<IMovementRepository, MovementRepository>();
+builder.Services.AddScoped<IMovementService, MovementService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddHealthChecks();
