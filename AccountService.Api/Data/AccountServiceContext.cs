@@ -14,12 +14,6 @@ namespace AccountService.Api.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure relationships
-            modelBuilder.Entity<Account>()
-                .HasMany(a => a.Movements)
-                .WithOne(m => m.Account)
-                .HasForeignKey(m => m.AccountId);
-
             modelBuilder.Entity<Account>()
                 .HasIndex(a => a.Number)
                 .IsUnique();

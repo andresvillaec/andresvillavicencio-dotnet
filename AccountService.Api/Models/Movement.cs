@@ -25,10 +25,7 @@ public class Movement
     [Precision(18, 2)]
     public decimal Balance { get; set; }
 
-    // Foreign key
-    public int AccountId { get; set; }
-
-    public Account? Account { get; set; }
+    public string AccountNumber { get; set; }
 
     public Movement()
     {

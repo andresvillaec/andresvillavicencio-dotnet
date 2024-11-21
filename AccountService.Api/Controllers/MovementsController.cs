@@ -1,3 +1,4 @@
+using AccountService.Api.Dtos;
 using AccountService.Api.Models;
 using AccountService.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -32,17 +33,16 @@ namespace AccountService.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Movement movement)
+        public async Task<IActionResult> Create([FromBody] MovementDto movement)
         {
-            var newClient = await _service.AddAsync(movement);
-            return CreatedAtAction(nameof(GetById), new { id = newClient.Id }, movement);
+            var newMovement = await _service.AddAsync(movement);
+            return CreatedAtAction(nameof(GetById), new { id = newMovement.Id }, movement);
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Movement movement)
+        public async Task<IActionResult> Update(int id, [FromBody] MovementDto movement)
         {
-            movement.Id = id;
-            await _service.UpdateAsync(movement);
+            await _service.UpdateAsync(id, movement);
             return NoContent();
         }
 

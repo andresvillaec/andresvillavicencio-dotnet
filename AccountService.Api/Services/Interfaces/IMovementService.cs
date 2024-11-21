@@ -1,19 +1,20 @@
-﻿using AccountService.Api.Models;
+﻿using AccountService.Api.Dtos;
+using AccountService.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace AccountService.Api.Services.Interfaces;
 
 public interface IMovementService
 {
-    Task<IEnumerable<Movement>> GetAllAsync();
+    Task<IEnumerable<ReadonlyMovementDto>> GetAllAsync();
 
-    Task<Movement> GetByIdAsync(int id);
+    Task<ReadonlyMovementDto> GetByIdAsync(int id);
 
-    Task<Movement> AddAsync(Movement movement);
+    Task<ReadonlyMovementDto> AddAsync(MovementDto movement);
 
-    Task UpdateAsync(Movement movement);
+    Task UpdateAsync(int id, MovementDto movement);
 
-    Task UpdatePartialAsync(int id, JsonPatchDocument<Movement> movement);
+    Task UpdatePartialAsync(int id, JsonPatchDocument<MovementDto> movement);
 
     Task DeleteAsync(int id);
 }
