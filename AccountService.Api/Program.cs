@@ -1,4 +1,8 @@
 using AccountService.Api.Data;
+using AccountService.Api.Repositories;
+using AccountService.Api.Repositories.Interfaces;
+using AccountService.Api.Services;
+using AccountService.Api.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +11,9 @@ builder.Services.AddDbContext<AccountServiceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
+
+builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IAccountsService, AccountsService>();
 
 builder.Services.AddControllers();
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace AccountService.Api.Models;
@@ -21,6 +22,9 @@ public class Account
     public ICollection<Movement> Movements { get; set; } = new List<Movement>();
 
     public bool Status { get; set; }
+
+    //[Required]
+    //public int ClientId { get; set; }
 
     public Account()
     {
