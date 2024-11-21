@@ -23,8 +23,8 @@ public class Account
 
     public bool Status { get; set; }
 
-    //[Required]
-    //public int ClientId { get; set; }
+    [Required]
+    public int ClientId { get; set; }
 
     public Account()
     {
