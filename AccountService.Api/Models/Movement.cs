@@ -8,6 +8,7 @@ namespace AccountService.Api.Models;
 public class Movement
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     [Required]

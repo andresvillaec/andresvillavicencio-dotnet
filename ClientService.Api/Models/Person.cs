@@ -11,7 +11,7 @@ public class Person
 
     public Genders? Gender { get; set; }
 
-    public int? Edad { get; set; }
+    public int? Age { get; set; }
 
     [Required]
     [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Unicamente números y letras están permitidos")]

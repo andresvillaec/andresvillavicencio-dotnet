@@ -1,19 +1,20 @@
-﻿using ClientService.Api.Models;
+﻿using ClientService.Api.Dtos;
+using ClientService.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace ClientService.Api.Services.Interfaces;
 
 public interface IClientsService
 {
-    Task<IEnumerable<Client>> GetAllAsync();
+    Task<IEnumerable<ClientDto>> GetAllAsync();
 
-    Task<Client> GetByIdAsync(int id);
+    Task<ClientDto> GetByIdAsync(int id);
 
-    Task<Client> AddAsync(Client client);
+    Task<ClientDto> AddAsync(ClientDto client);
 
-    Task UpdateAsync(Client client);
+    Task UpdateAsync(ClientDto client);
 
-    Task UpdatePartialAsync(int id, JsonPatchDocument<Client> client);
+    Task UpdatePartialAsync(int id, JsonPatchDocument<ClientDto> client);
 
     Task DeleteAsync(int id);
 }

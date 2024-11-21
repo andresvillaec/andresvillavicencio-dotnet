@@ -2,14 +2,16 @@
 using ClientService.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace ClientService.Api.Migrations
 {
     [DbContext(typeof(ClientServiceContext))]
-    [Migration("20241121024605_InitialCreate")]
+    [Migration("20241121162936_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,13 +35,13 @@ namespace ClientService.Api.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("DocumentNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("Edad")
-                        .HasColumnType("int");
 
                     b.Property<int?>("Gender")
                         .HasColumnType("int");

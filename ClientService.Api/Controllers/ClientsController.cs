@@ -1,3 +1,4 @@
+using ClientService.Api.Dtos;
 using ClientService.Api.Models;
 using ClientService.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -32,14 +33,14 @@ namespace ClientService.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Client client)
+        public async Task<IActionResult> Create([FromBody] ClientDto client)
         {
             var newClient = await _service.AddAsync(client);
-            return CreatedAtAction(nameof(GetById), new { id = newClient.Id }, client);
+            return CreatedAtAction(nameof(GetById), new { id = newClient.Id }, newClient);
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Client client)
+        public async Task<IActionResult> Update(int id, [FromBody] ClientDto client)
         {
             client.Id = id;
             await _service.UpdateAsync(client);

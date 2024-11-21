@@ -1,4 +1,6 @@
 using ClientService.Api.Data;
+using ClientService.Api.Mappers;
+using ClientService.Api.Mappers.Interfaces;
 using ClientService.Api.Repositories;
 using ClientService.Api.Repositories.Interfaces;
 using ClientService.Api.Services;
@@ -17,6 +19,7 @@ internal class Program
 
         builder.Services.AddScoped<IClientRepository, ClientRepository>();
         builder.Services.AddScoped<IClientsService, ClientsService>();
+        builder.Services.AddScoped<IClientMapper, ClientMapper>();
 
         // Add services to the container.
         builder.Services.AddControllers();
