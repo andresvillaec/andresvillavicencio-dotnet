@@ -21,8 +21,6 @@ public class Account
     [Precision(18, 2)]
     public decimal OpeningDeposit { get; set; }
 
-    public ICollection<Movement> Movements { get; set; } = new List<Movement>();
-
     public bool Status { get; set; }
 
     [Required]

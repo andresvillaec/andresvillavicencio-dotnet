@@ -36,7 +36,7 @@ namespace AccountService.Api.Controllers
         public async Task<IActionResult> Create([FromBody] MovementDto movement)
         {
             var newMovement = await _service.AddAsync(movement);
-            return CreatedAtAction(nameof(GetById), new { id = newMovement.Id }, movement);
+            return CreatedAtAction(nameof(GetById), new { id = newMovement.Id }, newMovement);
         }
 
         [HttpPut("{id:int}")]

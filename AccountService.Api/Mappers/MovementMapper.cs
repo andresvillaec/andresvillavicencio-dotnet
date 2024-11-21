@@ -20,6 +20,7 @@ public class MovementMapper : IMovementMapper
     {
         return new ReadonlyMovementDto
         {
+            Id = movement.Id,
             AccountType = movement.AccountType,
             Amount = movement.Amount,
             AccountNumber = movement.AccountNumber,

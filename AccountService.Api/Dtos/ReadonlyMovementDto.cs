@@ -5,6 +5,7 @@ namespace AccountService.Api.Dtos;
 public class ReadonlyMovementDto
 {
     public int Id { get; set; }
+
     public AccountTypes AccountType { get; set; }
 
     public decimal Amount { get; set; }

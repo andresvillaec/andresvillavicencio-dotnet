@@ -1,4 +1,6 @@
 using AccountService.Api.Data;
+using AccountService.Api.Mappers;
+using AccountService.Api.Mappers.Interfaces;
 using AccountService.Api.Repositories;
 using AccountService.Api.Repositories.Interfaces;
 using AccountService.Api.Services;
@@ -17,6 +19,7 @@ builder.Services.AddScoped<IAccountsService, AccountsService>();
 
 builder.Services.AddScoped<IMovementRepository, MovementRepository>();
 builder.Services.AddScoped<IMovementService, MovementService>();
+builder.Services.AddScoped<IMovementMapper, MovementMapper>();
 
 builder.Services.AddControllers();
 

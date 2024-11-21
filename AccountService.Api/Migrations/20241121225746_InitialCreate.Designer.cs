@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountService.Api.Migrations
 {
     [DbContext(typeof(AccountServiceContext))]
-    [Migration("20241121163030_InitialCreate")]
+    [Migration("20241121225746_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -64,8 +64,9 @@ namespace AccountService.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("AccountType")
                         .HasColumnType("int");
@@ -83,25 +84,7 @@ namespace AccountService.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.ToTable("Movements");
-                });
-
-            modelBuilder.Entity("AccountService.Api.Models.Movement", b =>
-                {
-                    b.HasOne("AccountService.Api.Models.Account", "Account")
-                        .WithMany("Movements")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("AccountService.Api.Models.Account", b =>
-                {
-                    b.Navigation("Movements");
                 });
 #pragma warning restore 612, 618
         }
