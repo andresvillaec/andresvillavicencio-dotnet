@@ -65,7 +65,7 @@ public class MovementService : IMovementService
         }
     }
 
-    private async Task<decimal> GetNewBalance(MovementDto movementDto, int movementId = 0)
+    public async Task<decimal> GetNewBalance(MovementDto movementDto, int movementId = 0)
     {
         decimal initialBalance = await _repository.GetOpeningDeposit(movementDto.AccountNumber);
         decimal sumMovementsAmount = await _repository.SumMovements(movementDto.AccountNumber, movementId);

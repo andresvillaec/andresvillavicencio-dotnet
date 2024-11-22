@@ -2,10 +2,7 @@ using AccountMS.Exceptions;
 using AccountService.Api.Mappers.Interfaces;
 using AccountService.Api.Repositories.Interfaces;
 using AccountService.Api.Services;
-using AccountService.Api.Services.Interfaces;
 using Moq;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel;
 
 namespace AccountService.Test
 {
@@ -50,7 +47,7 @@ namespace AccountService.Test
             }
             catch (Exception ex)
             {
-                Assert.Fail($"No exception should be thrown, but got: {ex.GetType().Name}");
+                Assert.Fail($"No funds available exception: {ex.GetType().Name}");
             }
         }
     }
