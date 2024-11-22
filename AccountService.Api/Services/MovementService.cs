@@ -49,7 +49,7 @@ public class MovementService : IMovementService
     {
         var movement = _mapper.ParseToMovement(movementDto);
         movement.Id = id;
-        await SetBalance(movementDto, movement, id);
+        await SetBalance(movementDto, movement);
         await _repository.UpdateAsync(movement);
     }
 
@@ -74,9 +74,9 @@ public class MovementService : IMovementService
         return initialBalance + sumMovementsAmount + movementDto.Amount;
     }
 
-    private async Task SetBalance(MovementDto movementDto, Movement movement, int movementId = 0)
+    private async Task SetBalance(MovementDto movementDto, Movement movement)
     {
-        decimal newBalance = await GetNewBalance(movementDto, movementId);
+        decimal newBalance = await GetNewBalance(movementDto, movement.Id);
         ValidateFunds(newBalance);
         movement.Balance = newBalance;
     }

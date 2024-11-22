@@ -33,7 +33,7 @@ public class MovementMapper : IMovementMapper
     private decimal GetTransactionAmount(MovementDto movementDto)
     {
         decimal amount = Math.Abs(movementDto.Amount);
-        return IsDeposit(movementDto) ? amount : amount * -1;
+        return IsDeposit(movementDto) ? amount : (amount * (-1));
     }
 
     private bool IsDeposit(MovementDto movementDto) => movementDto.AccountType == AccountTypes.Deposit;

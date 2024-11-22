@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AccountService.Api.Dtos;
 
-public class MovementDto
+public class MovementDto : IValidatableObject
 {
     [Required]
     [Range((int)AccountTypes.Deposit, (int)AccountTypes.Withdrawal, ErrorMessage = "Solo se permite los valores 1(Deposito) y 2(Retiro)")]
@@ -16,4 +16,16 @@ public class MovementDto
 
     [Required]
     public required string AccountNumber { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (AccountType == AccountTypes.Deposit && Amount <= 0)
+        {
+            yield return new ValidationResult("Los depósitos solo aceptan valores positivos.", new[] { nameof(Amount) });
+        }
+        else if (AccountType == AccountTypes.Withdrawal && Amount >= 0)
+        {
+            yield return new ValidationResult("Para retiros solo aceptan valores negativos", new[] { nameof(Amount) });
+        }
+    }
 }
