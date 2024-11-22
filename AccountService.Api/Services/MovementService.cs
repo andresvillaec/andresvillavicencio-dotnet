@@ -57,6 +57,14 @@ public class MovementService : IMovementService
         throw new NotImplementedException();
     }
 
+    public void ValidateFunds(decimal newBalance)
+    {
+        if (newBalance < 0)
+        {
+            throw new AccountException(NoFundAvailable);
+        }
+    }
+
     private async Task<decimal> GetNewBalance(MovementDto movementDto, int movementId = 0)
     {
         decimal initialBalance = await _repository.GetOpeningDeposit(movementDto.AccountNumber);
@@ -72,11 +80,4 @@ public class MovementService : IMovementService
         movement.Balance = newBalance;
     }
 
-    private void ValidateFunds(decimal newBalance)
-    {
-        if (newBalance < 0)
-        {
-            throw new AccountException(NoFundAvailable);
-        }
-    }
 }
