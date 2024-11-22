@@ -1,6 +1,7 @@
 using AccountService.Api.Data;
 using AccountService.Api.Mappers;
 using AccountService.Api.Mappers.Interfaces;
+using AccountService.Api.Middleware;
 using AccountService.Api.Repositories;
 using AccountService.Api.Repositories.Interfaces;
 using AccountService.Api.Services;
@@ -43,7 +44,7 @@ using (var scope = app.Services.CreateScope())
 
 //app.UseHttpsRedirection();
 
-
+app.UseMiddleware<ExceptionMiddleware>();
 app.MapControllers();
 
 // Map health check endpoint
