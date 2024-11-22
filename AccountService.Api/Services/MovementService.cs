@@ -36,7 +36,7 @@ public class MovementService : IMovementService
     public async Task<IEnumerable<ReadonlyMovementDto>> GetAllAsync()
     {
         var list = await _repository.GetAllAsync();
-        return list.Select(m => _mapper.ParseToMovementDto(m)).ToList();
+        return list.Select(_mapper.ParseToMovementDto).ToList();
     }
 
     public async Task<ReadonlyMovementDto> GetByIdAsync(int id)

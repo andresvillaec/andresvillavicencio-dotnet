@@ -21,6 +21,9 @@ builder.Services.AddScoped<IMovementRepository, MovementRepository>();
 builder.Services.AddScoped<IMovementService, MovementService>();
 builder.Services.AddScoped<IMovementMapper, MovementMapper>();
 
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+builder.Services.AddScoped<IReportService, ReportService>();
+
 builder.Services.AddControllers();
 
 builder.Services.AddHealthChecks();
