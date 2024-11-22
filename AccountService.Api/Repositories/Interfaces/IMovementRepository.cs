@@ -10,5 +10,7 @@ namespace AccountService.Api.Repositories.Interfaces
         Task UpdateAsync(Movement movement);
         Task UpdatePartialAsync(Movement movement);
         Task DeleteAsync(int id);
+        Task<decimal> SumMovements(string accountNumber, int movementId);
+        Task<decimal> GetOpeningDeposit(string accountNumber);
     }
 }

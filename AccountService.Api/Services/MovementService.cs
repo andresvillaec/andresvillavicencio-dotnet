@@ -21,6 +21,7 @@ public class MovementService : IMovementService
     public async Task<ReadonlyMovementDto> AddAsync(MovementDto movementDto)
     {
         var movement = _mapper.ParseToMovement(movementDto);
+        movement.Balance = await GetNewBalance(movementDto);
         await _repository.AddAsync(movement);
         return _mapper.ParseToMovementDto(movement);
     }
@@ -45,11 +46,20 @@ public class MovementService : IMovementService
     public async Task UpdateAsync(int id, MovementDto movementDto)
     {
         var movement = _mapper.ParseToMovement(movementDto);
+        movement.Balance = await GetNewBalance(movementDto, id);
         await _repository.UpdateAsync(movement);
     }
 
     public Task UpdatePartialAsync(int id, JsonPatchDocument<MovementDto> movement)
     {
         throw new NotImplementedException();
+    }
+
+    private async Task<decimal> GetNewBalance(MovementDto movementDto, int movementId = 0)
+    {
+        decimal initialBalance = await _repository.GetOpeningDeposit(movementDto.AccountNumber);
+        decimal sumMovementsAmount = await _repository.SumMovements(movementDto.AccountNumber, movementId);
+
+        return initialBalance + sumMovementsAmount + movementDto.Amount;
     }
 }

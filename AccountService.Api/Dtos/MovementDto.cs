@@ -12,9 +12,8 @@ public class MovementDto
 
     [Precision(18, 2)]
     [Required]
-    [Range(0, int.MaxValue, ErrorMessage = "No se permiten valores negativos, para retiros es necesario establecer Tipo de cuenta como Retiro")]
     public decimal Amount { get; set; }
 
     [Required]
-    public string AccountNumber { get; set; }
+    public required string AccountNumber { get; set; }
 }

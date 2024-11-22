@@ -1,5 +1,4 @@
 using AccountService.Api.Dtos;
-using AccountService.Api.Models;
 using AccountService.Api.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

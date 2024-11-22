@@ -1,5 +1,4 @@
 ﻿using AccountService.Api.Dtos;
-using AccountService.Api.Models;
 using Microsoft.AspNetCore.JsonPatch;
 
 namespace AccountService.Api.Services.Interfaces;

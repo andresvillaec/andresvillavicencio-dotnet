@@ -1,4 +1,5 @@
 ﻿using AccountService.Api.Dtos;
+using AccountService.Api.General;
 using AccountService.Api.Mappers.Interfaces;
 using AccountService.Api.Models;
 
@@ -12,7 +13,7 @@ public class MovementMapper : IMovementMapper
         {
             AccountNumber = movementDto.AccountNumber,
             AccountType = movementDto.AccountType,
-            Amount = movementDto.Amount,
+            Amount = GetTransactionAmount(movementDto),
         };
     }
 
@@ -28,4 +29,12 @@ public class MovementMapper : IMovementMapper
             Timestamp = movement.Timestamp,
         };
     }
+
+    private decimal GetTransactionAmount(MovementDto movementDto)
+    {
+        decimal amount = Math.Abs(movementDto.Amount);
+        return IsDeposit(movementDto) ? amount : amount * -1;
+    }
+
+    private bool IsDeposit(MovementDto movementDto) => movementDto.AccountType == AccountTypes.Deposit;
 }
